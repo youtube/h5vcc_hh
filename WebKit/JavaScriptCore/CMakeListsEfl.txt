@@ -1,0 +1,13 @@
+LIST(APPEND JavaScriptCore_SOURCES
+    jit/ExecutableAllocatorFixedVMPool.cpp
+    jit/ExecutableAllocatorPosix.cpp
+    runtime/MarkStackPosix.cpp
+)
+
+LIST(APPEND JavaScriptCore_LIBRARIES
+    ${ICU_I18N_LIBRARIES}
+)
+
+LIST(APPEND JavaScriptCore_LINK_FLAGS
+    ${ECORE_LDFLAGS}
+)

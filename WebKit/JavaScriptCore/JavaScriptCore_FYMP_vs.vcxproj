@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\out\</OutDir>
+    <TargetName>JavaScriptCore_D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>BUILDING_JavaScriptCore;U_HAVE_INTTYPES_H=0;FYMP_PLATFORM_VS=66;FYMP_PLATFORM=66;WTF_PLATFORM_FYMP_VS=1;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\;..\..\;assembler;wtf;runtime;yarr;jit;bytecode;bytecompiler;icu;interpreter;pcre;wtf\unicode;API;ForwardingHeaders;Interpreter;debugger;parser;profiler;wtf\text;..\External</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="API\JSBase.cpp" />
+    <ClCompile Include="API\JSCallbackConstructor.cpp" />
+    <ClCompile Include="API\JSCallbackFunction.cpp" />
+    <ClCompile Include="API\JSCallbackObject.cpp" />
+    <ClCompile Include="API\JSClassRef.cpp" />
+    <ClCompile Include="API\JSContextRef.cpp" />
+    <ClCompile Include="API\JSObjectRef.cpp" />
+    <ClCompile Include="API\JSStringRef.cpp" />
+    <ClCompile Include="API\JSValueRef.cpp" />
+    <ClCompile Include="API\OpaqueJSString.cpp" />
+    <ClCompile Include="bytecode\CodeBlock.cpp" />
+    <ClCompile Include="bytecode\JumpTable.cpp" />
+    <ClCompile Include="bytecode\Opcode.cpp" />
+    <ClCompile Include="bytecode\SamplingTool.cpp" />
+    <ClCompile Include="bytecode\StructureStubInfo.cpp" />
+    <ClCompile Include="bytecompiler\BytecodeGenerator.cpp" />
+    <ClCompile Include="bytecompiler\NodesCodegen.cpp" />
+    <ClCompile Include="debugger\Debugger.cpp" />
+    <ClCompile Include="debugger\DebuggerActivation.cpp" />
+    <ClCompile Include="debugger\DebuggerCallFrame.cpp" />
+    <ClCompile Include="interpreter\CallFrame.cpp" />
+    <ClCompile Include="interpreter\Interpreter.cpp" />
+    <ClCompile Include="interpreter\RegisterFile.cpp" />
+    <ClCompile Include="jit\ExecutableAllocator.cpp" />
+    <ClCompile Include="jit\ExecutableAllocatorFixedVMPool.cpp" />
+    <ClCompile Include="jit\ExecutableAllocatorWii.cpp" />
+    <ClCompile Include="jit\ExecutableAllocatorWin.cpp" />
+    <ClCompile Include="jit\JIT.cpp" />
+    <ClCompile Include="jit\JITArithmetic.cpp" />
+    <ClCompile Include="jit\JITArithmetic32_64.cpp" />
+    <ClCompile Include="jit\JITCall.cpp" />
+    <ClCompile Include="jit\JITCall32_64.cpp" />
+    <ClCompile Include="jit\JITOpcodes.cpp" />
+    <ClCompile Include="jit\JITOpcodes32_64.cpp" />
+    <ClCompile Include="jit\JITPropertyAccess.cpp" />
+    <ClCompile Include="jit\JITPropertyAccess32_64.cpp" />
+    <ClCompile Include="jit\JITStubs.cpp" />
+    <ClCompile Include="jit\ThunkGenerators.cpp" />
+    <ClCompile Include="parser\JSParser.cpp" />
+    <ClCompile Include="parser\Lexer.cpp" />
+    <ClCompile Include="parser\Nodes.cpp" />
+    <ClCompile Include="parser\Parser.cpp" />
+    <ClCompile Include="parser\ParserArena.cpp" />
+    <ClCompile Include="pcre\pcre_compile.cpp" />
+    <ClCompile Include="pcre\pcre_exec.cpp" />
+    <ClCompile Include="pcre\pcre_tables.cpp" />
+    <ClCompile Include="pcre\pcre_ucp_searchfuncs.cpp" />
+    <ClCompile Include="pcre\pcre_xclass.cpp" />
+    <ClCompile Include="profiler\Profile.cpp" />
+    <ClCompile Include="profiler\ProfileGenerator.cpp" />
+    <ClCompile Include="profiler\ProfileNode.cpp" />
+    <ClCompile Include="profiler\Profiler.cpp" />
+    <ClCompile Include="runtime\ArgList.cpp" />
+    <ClCompile Include="runtime\Arguments.cpp" />
+    <ClCompile Include="runtime\ArrayConstructor.cpp" />
+    <ClCompile Include="runtime\ArrayPrototype.cpp" />
+    <ClCompile Include="runtime\BooleanConstructor.cpp" />
+    <ClCompile Include="runtime\BooleanObject.cpp" />
+    <ClCompile Include="runtime\BooleanPrototype.cpp" />
+    <ClCompile Include="runtime\CallData.cpp" />
+    <ClCompile Include="runtime\Collector.cpp" />
+    <ClCompile Include="runtime\CommonIdentifiers.cpp" />
+    <ClCompile Include="runtime\Completion.cpp" />
+    <ClCompile Include="runtime\ConstructData.cpp" />
+    <ClCompile Include="runtime\DateConstructor.cpp" />
+    <ClCompile Include="runtime\DateConversion.cpp" />
+    <ClCompile Include="runtime\DateInstance.cpp" />
+    <ClCompile Include="runtime\DatePrototype.cpp" />
+    <ClCompile Include="runtime\Error.cpp" />
+    <ClCompile Include="runtime\ErrorConstructor.cpp" />
+    <ClCompile Include="runtime\ErrorInstance.cpp" />
+    <ClCompile Include="runtime\ErrorPrototype.cpp" />
+    <ClCompile Include="runtime\ExceptionHelpers.cpp" />
+    <ClCompile Include="runtime\Executable.cpp" />
+    <ClCompile Include="runtime\FunctionConstructor.cpp" />
+    <ClCompile Include="runtime\FunctionPrototype.cpp" />
+    <ClCompile Include="runtime\GetterSetter.cpp" />
+    <ClCompile Include="runtime\GlobalEvalFunction.cpp" />
+    <ClCompile Include="runtime\Identifier.cpp" />
+    <ClCompile Include="runtime\InitializeThreading.cpp" />
+    <ClCompile Include="runtime\InternalFunction.cpp" />
+    <ClCompile Include="runtime\JSActivation.cpp" />
+    <ClCompile Include="runtime\JSArray.cpp" />
+    <ClCompile Include="runtime\JSByteArray.cpp" />
+    <ClCompile Include="runtime\JSCell.cpp" />
+    <ClCompile Include="runtime\JSFunction.cpp" />
+    <ClCompile Include="runtime\JSGlobalData.cpp" />
+    <ClCompile Include="runtime\JSGlobalObject.cpp" />
+    <ClCompile Include="runtime\JSGlobalObjectFunctions.cpp" />
+    <ClCompile Include="runtime\JSImmediate.cpp" />
+    <ClCompile Include="runtime\JSLock.cpp" />
+    <ClCompile Include="runtime\JSNotAnObject.cpp" />
+    <ClCompile Include="runtime\JSNumberCell.cpp" />
+    <ClCompile Include="runtime\JSObject.cpp" />
+    <ClCompile Include="runtime\JSObjectWithGlobalObject.cpp" />
+    <ClCompile Include="runtime\JSONObject.cpp" />
+    <ClCompile Include="runtime\JSPropertyNameIterator.cpp" />
+    <ClCompile Include="runtime\JSStaticScopeObject.cpp" />
+    <ClCompile Include="runtime\JSString.cpp" />
+    <ClCompile Include="runtime\JSValue.cpp" />
+    <ClCompile Include="runtime\JSVariableObject.cpp" />
+    <ClCompile Include="runtime\LiteralParser.cpp" />
+    <ClCompile Include="runtime\Lookup.cpp" />
+    <ClCompile Include="runtime\MarkStack.cpp" />
+    <ClCompile Include="runtime\MarkStackNone.cpp" />
+    <ClCompile Include="runtime\MarkStackWin.cpp" />
+    <ClCompile Include="runtime\MathObject.cpp" />
+    <ClCompile Include="runtime\NativeErrorConstructor.cpp" />
+    <ClCompile Include="runtime\NativeErrorPrototype.cpp" />
+    <ClCompile Include="runtime\NumberConstructor.cpp" />
+    <ClCompile Include="runtime\NumberObject.cpp" />
+    <ClCompile Include="runtime\ObjectConstructor.cpp" />
+    <ClCompile Include="runtime\ObjectPrototype.cpp" />
+    <ClCompile Include="runtime\Operations.cpp" />
+    <ClCompile Include="runtime\PropertyDescriptor.cpp" />
+    <ClCompile Include="runtime\PropertyNameArray.cpp" />
+    <ClCompile Include="runtime\PropertySlot.cpp" />
+    <ClCompile Include="runtime\PrototypeFunction.cpp" />
+    <ClCompile Include="runtime\RegExp.cpp" />
+    <ClCompile Include="runtime\RegExpCache.cpp" />
+    <ClCompile Include="runtime\RegExpConstructor.cpp" />
+    <ClCompile Include="runtime\RegExpObject.cpp" />
+    <ClCompile Include="runtime\RegExpPrototype.cpp" />
+    <ClCompile Include="runtime\RopeImpl.cpp" />
+    <ClCompile Include="runtime\ScopeChain.cpp" />
+    <ClCompile Include="runtime\SmallStrings.cpp" />
+    <ClCompile Include="runtime\StringConstructor.cpp" />
+    <ClCompile Include="runtime\StringObject.cpp" />
+    <ClCompile Include="runtime\StringPrototype.cpp" />
+    <ClCompile Include="runtime\Structure.cpp" />
+    <ClCompile Include="runtime\StructureChain.cpp" />
+    <ClCompile Include="runtime\TimeoutChecker.cpp" />
+    <ClCompile Include="runtime\UString.cpp" />
+    <ClCompile Include="wtf\Assertions.cpp" />
+    <ClCompile Include="wtf\ByteArray.cpp" />
+    <ClCompile Include="wtf\CurrentTime.cpp" />
+    <ClCompile Include="wtf\DateMath.cpp" />
+    <ClCompile Include="wtf\dtoa.cpp" />
+    <ClCompile Include="wtf\FastMalloc.cpp" />
+    <ClCompile Include="wtf\HashTable.cpp" />
+    <ClCompile Include="wtf\MainThread.cpp" />
+    <ClCompile Include="wtf\MD5.cpp" />
+    <ClCompile Include="wtf\RandomNumber.cpp" />
+    <ClCompile Include="wtf\RefCountedLeakCounter.cpp" />
+    <ClCompile Include="wtf\SizeLimits.cpp" />
+    <ClCompile Include="wtf\text\AtomicString.cpp" />
+    <ClCompile Include="wtf\text\CString.cpp" />
+    <ClCompile Include="wtf\text\StringBuilder.cpp" />
+    <ClCompile Include="wtf\text\StringImpl.cpp" />
+    <ClCompile Include="wtf\text\StringStatics.cpp" />
+    <ClCompile Include="wtf\text\WTFString.cpp" />
+    <ClCompile Include="wtf\ThreadIdentifierDataPthreads.cpp" />
+    <ClCompile Include="wtf\Threading.cpp" />
+    <ClCompile Include="wtf\ThreadingPthreads.cpp" />
+    <ClCompile Include="wtf\ThreadingWin.cpp" />
+    <ClCompile Include="wtf\ThreadSpecificWin.cpp" />
+    <ClCompile Include="wtf\TypeTraits.cpp" />
+    <ClCompile Include="wtf\unicode\CollatorDefault.cpp" />
+    <ClCompile Include="wtf\unicode\icu\CollatorICU.cpp" />
+    <ClCompile Include="wtf\unicode\UTF8.cpp" />
+    <ClCompile Include="wtf\win\MainThreadWin.cpp" />
+    <ClCompile Include="wtf\win\OwnPtrWin.cpp" />
+    <ClCompile Include="wtf\WTFThreadData.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="API\JSBase.h" />
+    <ClInclude Include="API\JSCallbackConstructor.h" />
+    <ClInclude Include="API\JSCallbackFunction.h" />
+    <ClInclude Include="API\JSCallbackObject.h" />
+    <ClInclude Include="API\JSClassRef.h" />
+    <ClInclude Include="API\JSContextRef.h" />
+    <ClInclude Include="API\JSObjectRef.h" />
+    <ClInclude Include="API\JSStringRef.h" />
+    <ClInclude Include="API\JSValueRef.h" />
+    <ClInclude Include="API\OpaqueJSString.h" />
+    <ClInclude Include="bytecode\CodeBlock.h" />
+    <ClInclude Include="bytecode\JumpTable.h" />
+    <ClInclude Include="bytecode\Opcode.h" />
+    <ClInclude Include="bytecode\SamplingTool.h" />
+    <ClInclude Include="bytecode\StructureStubInfo.h" />
+    <ClInclude Include="bytecompiler\BytecodeGenerator.h" />
+    <ClInclude Include="debugger\Debugger.h" />
+    <ClInclude Include="debugger\DebuggerActivation.h" />
+    <ClInclude Include="debugger\DebuggerCallFrame.h" />
+    <ClInclude Include="interpreter\CallFrame.h" />
+    <ClInclude Include="interpreter\Interpreter.h" />
+    <ClInclude Include="interpreter\RegisterFile.h" />
+    <ClInclude Include="jit\ExecutableAllocator.h" />
+    <ClInclude Include="jit\JIT.h" />
+    <ClInclude Include="jit\JITStubs.h" />
+    <ClInclude Include="jit\ThunkGenerators.h" />
+    <ClInclude Include="parser\JSParser.h" />
+    <ClInclude Include="parser\Lexer.h" />
+    <ClInclude Include="parser\Nodes.h" />
+    <ClInclude Include="parser\Parser.h" />
+    <ClInclude Include="parser\ParserArena.h" />
+    <ClInclude Include="profiler\Profile.h" />
+    <ClInclude Include="profiler\ProfileGenerator.h" />
+    <ClInclude Include="profiler\ProfileNode.h" />
+    <ClInclude Include="profiler\Profiler.h" />
+    <ClInclude Include="runtime\ArgList.h" />
+    <ClInclude Include="runtime\Arguments.h" />
+    <ClInclude Include="runtime\ArrayConstructor.h" />
+    <ClInclude Include="runtime\ArrayPrototype.h" />
+    <ClInclude Include="runtime\BooleanConstructor.h" />
+    <ClInclude Include="runtime\BooleanObject.h" />
+    <ClInclude Include="runtime\BooleanPrototype.h" />
+    <ClInclude Include="runtime\CallData.h" />
+    <ClInclude Include="runtime\Collector.h" />
+    <ClInclude Include="runtime\CommonIdentifiers.h" />
+    <ClInclude Include="runtime\Completion.h" />
+    <ClInclude Include="runtime\ConstructData.h" />
+    <ClInclude Include="runtime\DateConstructor.h" />
+    <ClInclude Include="runtime\DateConversion.h" />
+    <ClInclude Include="runtime\DateInstance.h" />
+    <ClInclude Include="runtime\DatePrototype.h" />
+    <ClInclude Include="runtime\Error.h" />
+    <ClInclude Include="runtime\ErrorConstructor.h" />
+    <ClInclude Include="runtime\ErrorInstance.h" />
+    <ClInclude Include="runtime\ErrorPrototype.h" />
+    <ClInclude Include="runtime\ExceptionHelpers.h" />
+    <ClInclude Include="runtime\Executable.h" />
+    <ClInclude Include="runtime\FunctionConstructor.h" />
+    <ClInclude Include="runtime\FunctionPrototype.h" />
+    <ClInclude Include="runtime\GetterSetter.h" />
+    <ClInclude Include="runtime\GlobalEvalFunction.h" />
+    <ClInclude Include="runtime\Identifier.h" />
+    <ClInclude Include="runtime\InitializeThreading.h" />
+    <ClInclude Include="runtime\InternalFunction.h" />
+    <ClInclude Include="runtime\JSActivation.h" />
+    <ClInclude Include="runtime\JSArray.h" />
+    <ClInclude Include="runtime\JSByteArray.h" />
+    <ClInclude Include="runtime\JSCell.h" />
+    <ClInclude Include="runtime\JSFunction.h" />
+    <ClInclude Include="runtime\JSGlobalData.h" />
+    <ClInclude Include="runtime\JSGlobalObject.h" />
+    <ClInclude Include="runtime\JSGlobalObjectFunctions.h" />
+    <ClInclude Include="runtime\JSImmediate.h" />
+    <ClInclude Include="runtime\JSLock.h" />
+    <ClInclude Include="runtime\JSNotAnObject.h" />
+    <ClInclude Include="runtime\JSNumberCell.h" />
+    <ClInclude Include="runtime\JSObject.h" />
+    <ClInclude Include="runtime\JSObjectWithGlobalObject.h" />
+    <ClInclude Include="runtime\JSONObject.h" />
+    <ClInclude Include="runtime\JSPropertyNameIterator.h" />
+    <ClInclude Include="runtime\JSStaticScopeObject.h" />
+    <ClInclude Include="runtime\JSString.h" />
+    <ClInclude Include="runtime\JSValue.h" />
+    <ClInclude Include="runtime\JSVariableObject.h" />
+    <ClInclude Include="runtime\LiteralParser.h" />
+    <ClInclude Include="runtime\Lookup.h" />
+    <ClInclude Include="runtime\MarkStack.h" />
+    <ClInclude Include="runtime\MathObject.h" />
+    <ClInclude Include="runtime\NativeErrorConstructor.h" />
+    <ClInclude Include="runtime\NativeErrorPrototype.h" />
+    <ClInclude Include="runtime\NumberConstructor.h" />
+    <ClInclude Include="runtime\NumberObject.h" />
+    <ClInclude Include="runtime\ObjectConstructor.h" />
+    <ClInclude Include="runtime\ObjectPrototype.h" />
+    <ClInclude Include="runtime\Operations.h" />
+    <ClInclude Include="runtime\PropertyDescriptor.h" />
+    <ClInclude Include="runtime\PropertyMapHashTable.h" />
+    <ClInclude Include="runtime\PropertyNameArray.h" />
+    <ClInclude Include="runtime\PropertySlot.h" />
+    <ClInclude Include="runtime\PrototypeFunction.h" />
+    <ClInclude Include="runtime\PutPropertySlot.h" />
+    <ClInclude Include="runtime\RegExp.h" />
+    <ClInclude Include="runtime\RegExpCache.h" />
+    <ClInclude Include="runtime\RegExpConstructor.h" />
+    <ClInclude Include="runtime\RegExpObject.h" />
+    <ClInclude Include="runtime\RegExpPrototype.h" />
+    <ClInclude Include="runtime\RopeImpl.h" />
+    <ClInclude Include="runtime\ScopeChain.h" />
+    <ClInclude Include="runtime\SmallStrings.h" />
+    <ClInclude Include="runtime\StringConstructor.h" />
+    <ClInclude Include="runtime\StringObject.h" />
+    <ClInclude Include="runtime\StringPrototype.h" />
+    <ClInclude Include="runtime\Structure.h" />
+    <ClInclude Include="runtime\StructureChain.h" />
+    <ClInclude Include="runtime\TimeoutChecker.h" />
+    <ClInclude Include="runtime\UString.h" />
+    <ClInclude Include="runtime\UStringImpl.h" />
+    <ClInclude Include="wtf\Assertions.h" />
+    <ClInclude Include="wtf\ByteArray.h" />
+    <ClInclude Include="wtf\CurrentTime.h" />
+    <ClInclude Include="wtf\DateMath.h" />
+    <ClInclude Include="wtf\dtoa.h" />
+    <ClInclude Include="wtf\FastMalloc.h" />
+    <ClInclude Include="wtf\HashTable.h" />
+    <ClInclude Include="wtf\MainThread.h" />
+    <ClInclude Include="wtf\MD5.h" />
+    <ClInclude Include="wtf\RandomNumber.h" />
+    <ClInclude Include="wtf\RefCountedLeakCounter.h" />
+    <ClInclude Include="wtf\text\AtomicString.h" />
+    <ClInclude Include="wtf\text\AtomicStringImpl.h" />
+    <ClInclude Include="wtf\text\CString.h" />
+    <ClInclude Include="wtf\text\StringBuffer.h" />
+    <ClInclude Include="wtf\text\StringBuilder.h" />
+    <ClInclude Include="wtf\text\StringHash.h" />
+    <ClInclude Include="wtf\text\StringImpl.h" />
+    <ClInclude Include="wtf\text\StringImplBase.h" />
+    <ClInclude Include="wtf\text\TextPosition.h" />
+    <ClInclude Include="wtf\text\WTFString.h" />
+    <ClInclude Include="wtf\ThreadIdentifierDataPthreads.h" />
+    <ClInclude Include="wtf\Threading.h" />
+    <ClInclude Include="wtf\ThreadSpecific.h" />
+    <ClInclude Include="wtf\TypeTraits.h" />
+    <ClInclude Include="wtf\unicode\Collator.h" />
+    <ClInclude Include="wtf\unicode\icu\UnicodeIcu.h" />
+    <ClInclude Include="wtf\unicode\Unicode.h" />
+    <ClInclude Include="wtf\unicode\UTF8.h" />
+    <ClInclude Include="wtf\WTFThreadData.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,135 @@
+namespace="HTML"
+namespacePrefix="xhtml"
+namespaceURI="http://www.w3.org/1999/xhtml"
+
+a interfaceName=HTMLAnchorElement
+abbr interfaceName=HTMLElement
+acronym interfaceName=HTMLElement
+address interfaceName=HTMLElement
+applet
+area
+article interfaceName=HTMLElement
+aside interfaceName=HTMLElement
+audio wrapperOnlyIfMediaIsAvailable, conditional=VIDEO
+b interfaceName=HTMLElement
+base
+basefont interfaceName=HTMLBaseFontElement
+bdo interfaceName=HTMLElement
+big interfaceName=HTMLElement
+blockquote
+body
+br interfaceName=HTMLBRElement
+button constructorNeedsFormElement
+canvas
+caption interfaceName=HTMLTableCaptionElement
+center interfaceName=HTMLElement
+cite interfaceName=HTMLElement
+code interfaceName=HTMLElement
+col interfaceName=HTMLTableColElement
+colgroup interfaceName=HTMLTableColElement
+datagrid interfaceName=HTMLDataGridElement, conditional=DATAGRID
+datalist interfaceName=HTMLDataListElement, conditional=DATALIST
+dcell interfaceName=HTMLDataGridCellElement, conditional=DATAGRID
+dcol interfaceName=HTMLDataGridColElement, conditional=DATAGRID
+drow interfaceName=HTMLDataGridRowElement, conditional=DATAGRID
+dd interfaceName=HTMLElement
+del interfaceName=HTMLModElement
+dfn interfaceName=HTMLElement
+dir interfaceName=HTMLDirectoryElement
+div
+dl interfaceName=HTMLDListElement
+dt interfaceName=HTMLElement
+em interfaceName=HTMLElement
+embed
+fieldset interfaceName=HTMLFieldSetElement, constructorNeedsFormElement
+font
+footer interfaceName=HTMLElement
+form
+frame
+frameset interfaceName=HTMLFrameSetElement
+h1 interfaceName=HTMLHeadingElement
+h2 interfaceName=HTMLHeadingElement
+h3 interfaceName=HTMLHeadingElement
+h4 interfaceName=HTMLHeadingElement
+h5 interfaceName=HTMLHeadingElement
+h6 interfaceName=HTMLHeadingElement
+head
+header interfaceName=HTMLElement
+hgroup interfaceName=HTMLElement
+hr interfaceName=HTMLHRElement
+html
+i interfaceName=HTMLElement
+iframe interfaceName=HTMLIFrameElement
+image mapToTagName=img
+img interfaceName=HTMLImageElement, constructorNeedsFormElement
+input constructorNeedsFormElement
+ins interfaceName=HTMLModElement
+isindex interfaceName=HTMLIsIndexElement, constructorNeedsFormElement
+kbd interfaceName=HTMLElement
+keygen JSInterfaceName=HTMLSelectElement, constructorNeedsFormElement
+label
+layer interfaceName=HTMLElement
+legend constructorNeedsFormElement
+li interfaceName=HTMLLIElement
+link constructorNeedsCreatedByParser
+listing interfaceName=HTMLPreElement
+map
+mark interfaceName=HTMLElement
+marquee
+menu
+meta
+meter interfaceName=HTMLMeterElement, conditional=METER_TAG
+nav interfaceName=HTMLElement
+nobr interfaceName=HTMLElement
+noembed interfaceName=HTMLElement
+noframes interfaceName=HTMLElement
+nolayer interfaceName=HTMLElement
+object constructorNeedsCreatedByParser
+ol interfaceName=HTMLOListElement
+optgroup interfaceName=HTMLOptGroupElement, constructorNeedsFormElement
+option constructorNeedsFormElement
+p interfaceName=HTMLParagraphElement
+param
+plaintext interfaceName=HTMLElement
+pre
+progress interfaceName=HTMLProgressElement, conditional=PROGRESS_TAG
+q interfaceName=HTMLQuoteElement
+rp interfaceName=HTMLElement, conditional=RUBY
+rt interfaceName=HTMLElement, conditional=RUBY
+ruby interfaceName=HTMLElement, conditional=RUBY
+s interfaceName=HTMLElement
+samp interfaceName=HTMLElement
+script constructorNeedsCreatedByParser
+section interfaceName=HTMLElement
+select constructorNeedsFormElement
+small interfaceName=HTMLElement
+source wrapperOnlyIfMediaIsAvailable, conditional=VIDEO
+span interfaceName=HTMLElement
+strike interfaceName=HTMLElement
+strong interfaceName=HTMLElement
+style constructorNeedsCreatedByParser
+sub interfaceName=HTMLElement
+sup interfaceName=HTMLElement
+table
+tbody interfaceName=HTMLTableSectionElement
+td interfaceName=HTMLTableCellElement
+textarea interfaceName=HTMLTextAreaElement, constructorNeedsFormElement
+tfoot interfaceName=HTMLTableSectionElement
+th interfaceName=HTMLTableCellElement
+thead interfaceName=HTMLTableSectionElement
+title
+tr interfaceName=HTMLTableRowElement
+tt interfaceName=HTMLElement
+u interfaceName=HTMLElement
+ul interfaceName=HTMLUListElement
+var interfaceName=HTMLElement
+video wrapperOnlyIfMediaIsAvailable, conditional=VIDEO
+wbr interfaceName=HTMLElement
+xmp interfaceName=HTMLPreElement
+
+#if ENABLE_XHTMLMP
+noscript interfaceName=HTMLNoScriptElement
+#else
+noscript interfaceName=HTMLElement
+#endif
+
