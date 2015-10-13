@@ -1567,7 +1567,9 @@ void Document::attach()
     ASSERT(!m_axObjectCache);
 
     if (!m_renderArena)
-        m_renderArena = new RenderArena();
+	{
+        m_renderArena = RenderArena::create(); //FYWEBKITMOD: 'create' instead of plain constructor. According to r149185 when integrating patch for CVE-2013-2842.
+	}
     
     // Create the rendering tree
     setRenderer(new (m_renderArena.get()) RenderView(this, view()));
@@ -1936,7 +1938,7 @@ void Document::implicitClose()
 
     frame()->loader()->checkCallImplicitClose();
     RenderObject* renderObject = renderer();
-    
+
     // We used to force a synchronous display and flush here.  This really isn't
     // necessary and can in fact be actively harmful if pages are loading at a rate of > 60fps
     // (if your platform is syncing flushes and limiting them to 60fps).

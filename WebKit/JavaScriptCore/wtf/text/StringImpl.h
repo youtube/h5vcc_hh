@@ -204,9 +204,17 @@ public:
     }
     static PassRefPtr<StringImpl> adopt(StringBuffer&);
 
+	bool is8Bit() const { return false; } // FYWEBKITMOD - just for being compatible with JSStringJoiner (while integrating fix for Webkit-Bug 114779 (changeset 148721))
+
     SharedUChar* sharedBuffer();
     const UChar* characters() const { return m_data; }
-	const UChar* characters16() const { return m_data; } // FYMP - integrating parts of r152754 but keeping old String while new String supports 8 and 16 bit characters..
+//FYWEBKITMOD begin
+	const LChar* characters8() const { return NULL; }    // FYMP: just for being compatible with JSStringJoiner (while integrating fix for Webkit-Bug 114779 (changeset 148721))
+	const UChar* characters16() const { return m_data; } // FYMP: integrating parts of r152754 but keeping old String while new String supports 8 and 16 bit characters..
+
+    template <typename CharType>
+    ALWAYS_INLINE const CharType * getCharacters() const; //FYMP: just for being compatible with JSStringJoiner (while integrating fix for Webkit-Bug 114779 (changeset 148721))
+//FYWEBKITMOD end
 
     size_t cost()
     {
@@ -345,6 +353,14 @@ private:
     };
     mutable unsigned m_hash;
 };
+
+//FYWEBKITMOD begin: just for being compatible with JSStringJoiner (while integrating fix for Webkit-Bug 114779 (changeset 148721))
+template <>
+ALWAYS_INLINE const LChar* StringImpl::getCharacters<LChar>() const { return characters8(); }
+
+template <>
+ALWAYS_INLINE const UChar* StringImpl::getCharacters<UChar>() const { return characters(); }
+//FYWEBKITMOD end
 
 bool equal(const StringImpl*, const StringImpl*);
 bool equal(const StringImpl*, const char*);

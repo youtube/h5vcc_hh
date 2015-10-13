@@ -30,6 +30,7 @@
 #include "Interpreter.h"
 #include "JIT.h"
 #include "JSStringBuilder.h"
+#include "JSStringJoiner.h" //FYWEBKITMOD: integrating r148721 due to fix of bug 114779
 #include "Lookup.h"
 #include "ObjectPrototype.h"
 #include "Operations.h"
@@ -165,16 +166,46 @@ EncodedJSValue JSC_HOST_CALL arrayProtoFuncToString(ExecState* exec)
     if (alreadyVisited)
         return JSValue::encode(jsEmptyString(exec)); // return an empty string, avoiding infinite recursion.
 
+//FYWEBKITMOD begin: setting up StringJoiner (while integrating r148721 due to fix of bug 114779). But not using 'ConstructFromLiteral' optimization which we dont have in our webkit.
     unsigned length = thisObj->get(exec, exec->propertyNames().length).toUInt32(exec);
+    if (exec->hadException())
+        return JSValue::encode(jsUndefined());
+
+	//WebCore::String separator(",", WebCore::String::ConstructFromLiteral);
+	//JSStringJoiner stringJoiner(separator, length);
+	JSStringJoiner stringJoiner(",", length);
+//FYWEBKITMOD end
     unsigned totalSize = length ? length - 1 : 0;
     Vector<RefPtr<UString::Rep>, 256> strBuffer(length);
     for (unsigned k = 0; k < length; k++) {
         JSValue element;
         if (isRealArray && thisObj->canGetIndex(k))
             element = thisObj->getIndex(k);
-        else
+        else {
             element = thisObj->get(exec, k);
+//FYWEBKITMOD begin: added while integrating r148721 due to fix of bug 114779
+			if (exec->hadException()) 
+				return JSValue::encode(jsUndefined());
+//FYWEBKITMOD end
+			}
         
+//FYWEBKITMOD begin: removed (USE_FIX 1) old implementation which joined the strings manually and added usage of JSStringJoiner (while integrating r148721 due to fix of bug 114779)
+#define USE_FIX 1 //keep this defined!!!
+#ifdef USE_FIX
+		if (element.isUndefinedOrNull()) 
+			stringJoiner.append(WebCore::String()); //FYWEBKITMOD: 
+		else
+			stringJoiner.append(element.toString(exec).rep()); //FYWEBKITMOD: using toString() instead of new toWTFString(). Only difference is an optimization used in the toWTFString() case.
+
+		if (exec->hadException())
+			return JSValue::encode(jsUndefined());
+		}
+
+	arrayVisitedElements.remove(thisObj);
+
+	return JSValue::encode(stringJoiner.build(exec));
+
+#else
         if (element.isUndefinedOrNull())
             continue;
         
@@ -205,6 +236,8 @@ EncodedJSValue JSC_HOST_CALL arrayProtoFuncToString(ExecState* exec)
     }
     ASSERT(buffer.size() == totalSize);
     return JSValue::encode(jsString(exec, UString::adopt(buffer)));
+#endif
+//FYWEBKITMOD end
 }
 
 EncodedJSValue JSC_HOST_CALL arrayProtoFuncToLocaleString(ExecState* exec)

@@ -68,6 +68,8 @@ public:
     Frame* frame() const { return m_frame.get(); }
     void clearFrame();
 
+	RenderView* renderView() const { return m_frame ? m_frame->contentRenderer() : 0; } //FYWEBKITMOD: According to r149185 when integrating patch for CVE-2013-2842.
+
     int marginWidth() const { return m_margins.width(); } // -1 means default
     int marginHeight() const { return m_margins.height(); } // -1 means default
     void setMarginWidth(int);

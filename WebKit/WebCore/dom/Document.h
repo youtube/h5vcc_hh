@@ -1160,7 +1160,7 @@ private:
     bool m_titleSetExplicitly;
     RefPtr<Element> m_titleElement;
 
-    OwnPtr<RenderArena> m_renderArena;
+    RefPtr<RenderArena> m_renderArena; //FYWEBKITMOD: Changed OwnPtr to RefPtr. According to r149185 when integrating patch for CVE-2013-2842.
 
     typedef std::pair<Vector<DocumentMarker>, Vector<IntRect> > MarkerMapVectorPair;
     typedef HashMap<RefPtr<Node>, MarkerMapVectorPair*> MarkerMap;

@@ -173,6 +173,7 @@
     <ClCompile Include="runtime\JSPropertyNameIterator.cpp" />
     <ClCompile Include="runtime\JSStaticScopeObject.cpp" />
     <ClCompile Include="runtime\JSString.cpp" />
+    <ClCompile Include="runtime\JSStringJoiner.cpp" />
     <ClCompile Include="runtime\JSValue.cpp" />
     <ClCompile Include="runtime\JSVariableObject.cpp" />
     <ClCompile Include="runtime\LiteralParser.cpp" />
@@ -321,6 +322,7 @@
     <ClInclude Include="runtime\JSPropertyNameIterator.h" />
     <ClInclude Include="runtime\JSStaticScopeObject.h" />
     <ClInclude Include="runtime\JSString.h" />
+    <ClInclude Include="runtime\JSStringJoiner.h" />
     <ClInclude Include="runtime\JSValue.h" />
     <ClInclude Include="runtime\JSVariableObject.h" />
     <ClInclude Include="runtime\LiteralParser.h" />
@@ -358,9 +360,11 @@
     <ClInclude Include="runtime\UStringImpl.h" />
     <ClInclude Include="wtf\Assertions.h" />
     <ClInclude Include="wtf\ByteArray.h" />
+    <ClInclude Include="wtf\CheckedArithmetic.h" />
     <ClInclude Include="wtf\CurrentTime.h" />
     <ClInclude Include="wtf\DateMath.h" />
     <ClInclude Include="wtf\dtoa.h" />
+    <ClInclude Include="wtf\EnumClass.h" />
     <ClInclude Include="wtf\FastMalloc.h" />
     <ClInclude Include="wtf\HashTable.h" />
     <ClInclude Include="wtf\MainThread.h" />

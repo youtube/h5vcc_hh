@@ -500,6 +500,9 @@
     <ClCompile Include="wtf\win\OwnPtrWin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="runtime\JSStringJoiner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API\JSBase.h">
@@ -941,6 +944,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="wtf\unicode\icu\UnicodeIcu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\JSStringJoiner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wtf\CheckedArithmetic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wtf\EnumClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -37,14 +37,19 @@
 
 #include "Arena.h"
 #include <wtf/Noncopyable.h>
+//FYWEBKITMOD begin: According to r149185 when integrating patch for CVE-2013-2842.
+#include "wtf/PassRefPtr.h"
+#include "wtf/RefCounted.h"
+//FYWEBKITMOD end
 
 namespace WebCore {
 
 static const size_t gMaxRecycledSize = 400;
 
-class RenderArena : public Noncopyable {
+class RenderArena : public RefCounted<RenderArena> { //FYWEBKITMOD: deriving from RefCounted. According to r149185 when integrating patch for CVE-2013-2842.
+
 public:
-    RenderArena(unsigned arenaSize = 4096);
+	static PassRefPtr<RenderArena> create() { return adoptRef(new RenderArena); } //FYWEBKITMOD: Added according to r149185 when integrating patch for CVE-2013-2842.
     ~RenderArena();
 
     // Memory management functions
@@ -52,6 +57,7 @@ public:
     void free(size_t, void*);
 
 private:
+	RenderArena(unsigned arenaSize = 4096); //FYWEBKITMOD: Declared it 'private'. According to r149185 when integrating patch for CVE-2013-2842.
     // Underlying arena pool
     ArenaPool m_pool;
 

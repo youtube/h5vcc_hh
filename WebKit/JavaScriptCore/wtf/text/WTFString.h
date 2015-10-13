@@ -128,12 +128,12 @@ public:
         return m_impl->length();
     }
 
-	// FYMP begin - for compatibility with code integrated from r152754
+//FYWEBKITMOD begin - for compatibility with code integrated from r152754
 	const UChar* characters16() const
 		{
 		return characters();
 		}
-	// FYMP end
+//FYWEBKITMOD end
 
     const UChar* characters() const
     {
@@ -141,6 +141,10 @@ public:
             return 0;
         return m_impl->characters();
     }
+
+//FYWEBKITMOD begin - just for being compatible with JSStringJoiner (while integrating fix for Webkit-Bug 114779 (changeset 148721))
+    bool is8Bit() const { return m_impl->is8Bit(); }
+//FYWEBKITMOD end
 
     const UChar* charactersWithNullTermination();
 
@@ -427,7 +431,7 @@ inline void appendNumber(Vector<UChar>& vector, unsigned char number)
     }
 }
 
-// FYMP begin - integrating parts of r152754.
+// FYWEBKITMOD begin - integrating parts of r152754.
 // Shared global empty string.
 const String& emptyString();
 
@@ -439,7 +443,7 @@ public:
 private:
     const char* m_characters;
 };
-// FYMP end
+// FYWEBKITMOD end
 } // namespace WebCore
 
 namespace WTF {

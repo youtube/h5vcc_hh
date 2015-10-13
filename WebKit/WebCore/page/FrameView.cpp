@@ -47,6 +47,7 @@
 #include "HTMLNames.h"
 #include "InspectorTimelineAgent.h"
 #include "OverflowEvent.h"
+#include "RenderArena.h" //FYWEBKITMOD: According to r149185 when integrating patch for CVE-2013-2842.
 #include "RenderEmbeddedObject.h"
 #include "RenderLayer.h"
 #include "RenderPart.h"
@@ -1548,6 +1549,9 @@ bool FrameView::updateWidgets()
     Vector<RenderEmbeddedObject*> objects;
     objects.reserveCapacity(size);
 
+    // Protect RendereArena from getting wiped out, when Document is detached during updateWidget().
+    RefPtr<RenderArena> protectedArena = m_frame->document()->renderArena(); //FYWEBKITMOD: Using protected renderarena according to r149185 when integrating patch for CVE-2013-2842.
+
     RenderEmbeddedObjectSet::const_iterator end = m_widgetUpdateSet->end();
     for (RenderEmbeddedObjectSet::const_iterator it = m_widgetUpdateSet->begin(); it != end; ++it) {
         objects.uncheckedAppend(*it);
@@ -1558,19 +1562,18 @@ bool FrameView::updateWidgets()
         RenderEmbeddedObject* object = objects[i];
 
         // The object may have been destroyed, but our manual ref() keeps the object from being deleted.
-        object->updateWidget(false);
-        object->updateWidgetPosition();
+		object->updateWidget(false);
+		object->updateWidgetPosition();
 
         m_widgetUpdateSet->remove(object);
     }
 
-    RenderArena* arena = m_frame->document()->renderArena();
     for (size_t i = 0; i < size; ++i)
-        objects[i]->deref(arena);
+        objects[i]->deref(protectedArena.get()); //FYWEBKITMOD: Using RefPtr according to r149185 when integrating patch for CVE-2013-2842.
     
     return m_widgetUpdateSet->isEmpty();
 }
-    
+  
 void FrameView::performPostLayoutTasks()
 {
     if (m_firstLayoutCallbackPending) {
@@ -1596,7 +1599,10 @@ void FrameView::performPostLayoutTasks()
 
     resumeScheduledEvents();
 
-    if (!root->printing()) {
+	// Refetch render view since it can be destroyed by updateWidget() call above.
+	root = renderView(); //FYWEBKITMOD: refetch. According to r149185 when integrating patch for CVE-2013-2842.
+
+    if (root && !root->printing()) { //FYWEBKITMOD: Checking 'root != NULL'. According to r149185 when integrating patch for CVE-2013-2842.
         IntSize currentSize = IntSize(width(), height());
         float currentZoomFactor = root->style()->zoom();
         bool resized = !m_firstLayout && (currentSize != m_lastLayoutSize || currentZoomFactor != m_lastZoomFactor);
